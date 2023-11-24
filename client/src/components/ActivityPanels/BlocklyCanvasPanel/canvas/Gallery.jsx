@@ -13,6 +13,7 @@ import {
 } from '../../Utils/consoleHelpers';
 import ArduinoLogo from '../Icons/ArduinoLogo';
 import PlotterLogo from '../Icons/PlotterLogo';
+import ShareLogo from '../Icons/ShareLogo';
 
 let plotId = 1;
 
@@ -39,7 +40,6 @@ export default function PublicCanvas({ activity, isSandbox }) {
   };
 
   useEffect(() => {
-    // once the activity state is set, set the workspace and save
     const setUp = async () => {
       activityRef.current = activity;
       if (!workspaceRef.current && activity && Object.keys(activity).length !== 0) {
@@ -140,6 +140,8 @@ export default function PublicCanvas({ activity, isSandbox }) {
             size='large'
             spinning={selectedCompile}
           >
+            
+            {/* Control panel from the sandbox original code (with appropriate modifications) */}
             <Row id='icon-control-panel'>
               <Col flex='none' id='section-header'>
                 Gallery
@@ -156,7 +158,6 @@ export default function PublicCanvas({ activity, isSandbox }) {
                     </Row>
                   </Col>
                   <Col flex='auto' />
-
                   <Col flex={'200px'}>
                     <Row>
                       <Col className='flex flex-row'>
@@ -192,6 +193,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
 
               </Col>
             </Row>
+            {/* Adding first row of code block holder */}
             <Row>
                 <Col>
                     <div className='CodeBlock'>
@@ -219,6 +221,8 @@ export default function PublicCanvas({ activity, isSandbox }) {
                     </div>
                 </Col>
             </Row>
+
+            {/* Adding second row of code block holder */}
             <Row>
                 <Col>
                     <div className='CodeBlock'>
