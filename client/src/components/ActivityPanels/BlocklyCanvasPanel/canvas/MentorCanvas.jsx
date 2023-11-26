@@ -913,7 +913,50 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
                 </Row>
               </Col>
             </Row>
-            <div id='blockly-canvas' />
+            <div id='blockly-canvas'/>
+            {/* Jeris Contribution of setup for the Gallery */}
+            {/* Start of the Gallery Components */}
+            <div>
+              <Row>
+                <Col>
+                  <div className='CodeBlock'>
+                    <p className = "code">Code goes here</p>
+                    <h2 className = "studentName">Student Name</h2>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='CodeBlock'>
+                    <p className = "code">Code goes here</p>
+                    <h2 className = "studentName">Student Name</h2>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='CodeBlock'>
+                    <p className = "code">Code goes here</p>
+                    <h2 className = "studentName">Student Name</h2>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='CodeBlock'>
+                    <p className = "code">Code goes here</p>
+                    <h2 className = "studentName">Student Name</h2>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='CodeBlock'>
+                    <p className = "code">Code goes here</p>
+                    <h2 className = "studentName">Student Name</h2>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='CodeBlock'>
+                    <p className = "code">Code goes here</p>
+                    <h2 className = "studentName">Student Name</h2>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+            {/* End of Gallery Componenets */}
           </Spin>
           </div>
            {!isSandbox && !isMentorActivity && (
@@ -1088,71 +1131,7 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
 
       {/* End of Block Generator */}
 
-
-      {/* Jeris Contribution of setup for the Gallery}
-      {/* Start of the Gallery Components*/}
-      <div
-      id='bottom-container'
-      className='flex flex-column vertical-container overflow-visible'
-      >
-        <Row>
-          <h1 id = "section-header">Gallery of Shared Code</h1>
-        </Row>
-        <Row>
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-                <Col >
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-            
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-                <Col>
-                    <div className='CodeBlock'>
-                      <p className = "code">Code goes here</p>
-                      <h2 className = "studentName">Student Name</h2>
-                    </div>
-                </Col>
-            </Row>
-        </div>
-      {/* End of Gallery Componenets */}
+      
 
       {/* This xml is for the blocks' menu we will provide. Here are examples on how to include categories and subcategories */}
       <xml id='toolbox' is='Blockly workspace'>
