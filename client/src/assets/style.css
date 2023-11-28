@@ -84,6 +84,8 @@ h3, p {
 }
 .codeBlockCol{
     background-color: bisque;
+}
 
-    
+.codeBlockColBig{
+    background-color: bisque;
 }

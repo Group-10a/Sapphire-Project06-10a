@@ -43,45 +43,45 @@ export default function BlockGenerator({
     window.addEventListener('load', init);
 
     return () => {
-      observer.disconnect();
+      bDObserver.disconnect();
+      gSObserver.disconnect();
     };
   }, []);
 
   return (
-    <div className='flex flex-row'>
     <div
       id='bottom-container'
-      className='flex flex-column vertical-container overflow-visible'
+      className='flex flex-column vertical-container overflow-hidden'
     >
-        <table id="blockFactoryContent">
-        <tr width="100%" height="10%">
-          <td width="50%" height="5%">
-            <table>
+      <table id="blockFactoryContent" height="100%">
+        <tr>
+          <td>
+            <table hidden="True">
               <tr id="blockLibrary">
                 <td id="blockLibraryContainer">
-                <span>
-                  <div class="dropdown">
-                    <button id="button_blockLib">Block Library</button>
-                    <div id="dropdownDiv_blockLib" class="dropdown-content">
-                      <a id="createNewBlockButton">Create New Block</a>
+                  <span hidden="True">
+                    <div class="dropdown">
+                      <button id="button_blockLib">Block Library</button>
+                      <div id="dropdownDiv_blockLib" class="dropdown-content">
+                        <a id="createNewBlockButton">Create New Block</a>
+                      </div>
                     </div>
-                  </div>
-                  <select id="blockLibraryDropdown">
-                  </select>
-                </span>
+                    <select id="blockLibraryDropdown">
+                    </select>
+                  </span>
                 </td>
                 <td id="blockLibraryControls">
-                <button id="saveToBlockLibraryButton" title="Save block to Block Library.">
-                  Save "block_type"
-                </button>
-                <button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
-                  Delete "block_type"
-                </button>
+                  <button id="saveToBlockLibraryButton" title="Save block to Block Library.">
+                    Save "block_type"
+                  </button>
+                  <button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
+                    Delete "block_type"
+                  </button>
                 </td>
               </tr>
             </table>
           </td>
-          <td height="5%">
+          <td width="30%" height="1px">
             <table id="blockFactoryPreview">
               <tr>
                 <td id="previewContainer">
@@ -92,76 +92,74 @@ export default function BlockGenerator({
                     </select>
                   </h3>
                 </td>
-                <td id="buttonContainer">
-                  <button id="linkButton" title="Save and link to blocks.">
+                <td id="buttonContainer" hidden="True">
+                  <button id="linkButton" title="Save and link to blocks." hidden="True">
                   </button>
-                  <button id="clearBlockLibraryButton" title="Clear Block Library.">
-                    <span>Clear Library</span>
+                  <button id="clearBlockLibraryButton" title="Clear Block Library." hidden="True">
+                    {/*<span>Clear Library</span>*/}
                   </button>
-                  <label for="files" class="buttonStyle">
-                    <span>Import Block Library</span>
+                  <label for="files" class="buttonStyle" hidden="True">
+                    {/*<span>Import Block Library</span>*/}
                   </label>
-                  <input id="files" type="file" name="files"
-                      accept="application/xml"/>
-                  <button id="localSaveButton" title="Save block library XML to a local file.">
-                    <span>Download Block Library</span>
+                  <input id="files" type="file" name="files" accept="application/xml" hidden="True"/>
+                  <button id="localSaveButton" title="Save block library XML to a local file." hidden="True">
+                    {/*<span>Download Block Library</span>*/}
                   </button>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
-        <tr height="80%">
+        <tr width="70%">
           <td id="blocklyWorkspaceContainer">
             <div id="blockly"></div>
             <div id="blocklyMask"></div>
           </td>
-          <td width="50%">
+          <td>
             <table id="blocklyPreviewContainer">
               <tr>
-                <td height="30%">
+                <td height="50%">
                   <div id="preview"></div>
                 </td>
               </tr>
               <tr>
-                <td height="5%">
-                  <h3>Block Definition
-                    <select id="format">
-                      <option value="JSON">JSON</option>
+                <td>
+                  {/*<h3>Block Definition*/}
+                    <select id="format" hidden="True">
                       <option value="JavaScript">JavaScript</option>
+                      {/*<option value="JSON">JSON</option>*/}
                     </select>
-                  </h3>
+                  {/*</h3>*/}
                 </td>
               </tr>
               <tr>
-                <td height="30%">
-                  <pre id="languagePre" class="prettyprint lang-js"
-                        ref={block_def}></pre>
-                  <label for="languageTA"></label><textarea id="languageTA"></textarea>
+                <td>
+                  <pre id="languagePre" class="prettyprint lang-js" ref={block_def} hidden="True"></pre>
+                  <label for="languageTA" hidden="True"></label><textarea id="languageTA" hidden="True"></textarea>
                 </td>
               </tr>
               <tr>
-                <td height="5%">
-                  <h3>Generator stub:
-                    <select id="language">
-                      <option value="JavaScript">JavaScript</option>
-                      <option value="Python">Python</option>
-                      <option value="PHP">PHP</option>
-                      <option value="Lua">Lua</option>
-                      <option value="Dart">Dart</option>
+                <td>
+                  {/*<h3>Generator stub:*/}
+                    <select id="language" hidden="True">
+                      <option value="Arduino">Arduino</option>
+                      {/*<option value="JavaScript">JavaScript</option>*/}
+                      {/*<option value="Python">Python</option>*/}
+                      {/*<option value="PHP">PHP</option>*/}
+                      {/*<option value="Lua">Lua</option>*/}
+                      {/*<option value="Dart">Dart</option>*/}
                     </select>
-                  </h3>
+                  {/*</h3>*/}
                 </td>
               </tr>
               <tr>
-                <td height="30%">
-                  <pre id="generatorPre" class="prettyprint lang-js"
-                        ref={gen_stub}></pre>
+                <td>
+                  <pre id="generatorPre" class="prettyprint lang-js" ref={gen_stub} hidden="True"></pre>
                 </td>
               </tr>
             </table>
           </td>
-          </tr>
+        </tr>
       </table>
 
       <div id="modalShadow"></div>
@@ -202,7 +200,7 @@ export default function BlockGenerator({
           <block type="type_list"></block>
           <block type="type_other"></block>
         </category>
-        <category name="Colour" id="colourCategory">
+        <category name="Colour" id="colourCategory" hidden="True">
           <block type="colour_hue"><mutation colour="20"></mutation><field name="HUE">20</field></block>
           <block type="colour_hue"><mutation colour="65"></mutation><field name="HUE">65</field></block>
           <block type="colour_hue"><mutation colour="120"></mutation><field name="HUE">120</field></block>
@@ -214,7 +212,6 @@ export default function BlockGenerator({
           <block type="colour_hue"><mutation colour="330"></mutation><field name="HUE">330</field></block>
         </category>
       </xml>
-    </div>
     </div>
   );
 }

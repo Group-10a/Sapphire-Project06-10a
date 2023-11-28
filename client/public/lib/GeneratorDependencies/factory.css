@@ -87,12 +87,14 @@
     border: #ddd 1px solid;
     margin-top: 0;
     position: absolute;
-    overflow: scroll;
+    overflow: hidden;
+    visibility: hidden;
   }
   
   #languageTA {
     display: none;
     font: 10pt monospace;
+    visibility: hidden;
   }
   
   .downloadButton {
@@ -258,6 +260,7 @@
     max-height: 300px;
     overflow: scroll;
     position: static;
+    visibility: hidden;
   }
   
   #blockDefs_label, #genStubs_label {

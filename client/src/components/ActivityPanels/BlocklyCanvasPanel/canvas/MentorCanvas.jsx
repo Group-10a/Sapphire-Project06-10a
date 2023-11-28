@@ -28,6 +28,9 @@ import {
 } from '../../../../Utils/requests';
 import IconHammer from '../Icons/IconHammer';
 
+// Alejandro's Contribution: Block Generator Import that includes the Block Factory and Block Preview
+import BlockGenerator from '../generator/BlockGenerator';
+
 
 
 import ArduinoLogo from '../Icons/ArduinoLogo';
@@ -788,7 +791,7 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
                       <i id='icon-btn' className='fa fa-arrow-left' />
                     </button>
                   </Col>
-                  <Col flex='auto' />
+                  <Col flex='auto'/>
                   <Row id='right-icon-container'>
 
 
@@ -914,49 +917,6 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
               </Col>
             </Row>
             <div id='blockly-canvas'/>
-            {/* Jeris Contribution of setup for the Gallery */}
-            {/* Start of the Gallery Components */}
-            <div>
-              <Row>
-                <Col>
-                  <div className='CodeBlock'>
-                    <p className = "code">Code goes here</p>
-                    <h2 className = "studentName">Student Name</h2>
-                  </div>
-                </Col>
-                <Col>
-                  <div className='CodeBlock'>
-                    <p className = "code">Code goes here</p>
-                    <h2 className = "studentName">Student Name</h2>
-                  </div>
-                </Col>
-                <Col>
-                  <div className='CodeBlock'>
-                    <p className = "code">Code goes here</p>
-                    <h2 className = "studentName">Student Name</h2>
-                  </div>
-                </Col>
-                <Col>
-                  <div className='CodeBlock'>
-                    <p className = "code">Code goes here</p>
-                    <h2 className = "studentName">Student Name</h2>
-                  </div>
-                </Col>
-                <Col>
-                  <div className='CodeBlock'>
-                    <p className = "code">Code goes here</p>
-                    <h2 className = "studentName">Student Name</h2>
-                  </div>
-                </Col>
-                <Col>
-                  <div className='CodeBlock'>
-                    <p className = "code">Code goes here</p>
-                    <h2 className = "studentName">Student Name</h2>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-            {/* End of Gallery Componenets */}
           </Spin>
           </div>
            {!isSandbox && !isMentorActivity && (
@@ -994,13 +954,20 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
         >
         <h1 id = "section-header">Block Generator</h1>
         <h2>Define custom blocks here!</h2>
+        <h3>If the Block Factory is not loaded, please refresh the page!</h3>
 
         {/* Mason's Contribution: Added 4 columns for forms that interact with back-end */}
-        <Row className='justify-content-center' align='middle' justify='middle'>
-
+        <Row className='justify-content-center' align='top' justify='top'>
+          <Col flex={'74%'} className = "codeBlockColBig">
+            {/* Alejandro's Contribution: Block Generator File that includes the Block Factory and Block Preview */}
+            <BlockGenerator
+              setBD={setFormBD}
+              setGS={setFormGS}
+            />
+          </Col>
           {/* Column for uploading blocks to the back-end */}
-          <Col flex={'25%'} className = "codeBlockCol">
-            <h1>Send a block to back-end</h1>
+          <Col flex={'24%'} className = "codeBlockCol">
+            <h1 style={{"font-size": "2em"}}>Send a block to back-end</h1>
             <form onSubmit={handleSubmitSendOrReload}>
               <label>Block Definition</label>
               <br></br>
@@ -1036,49 +1003,54 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
             </form>
 
           </Col>
+        </Row>
+        <Row className='justify-content-center' align='top' justify='top' style={{"min-width": "100%"}}>
           {/* Column for receiving blocks from back-end */}
-          <Col flex={'25%'}>
+          <Col flex={'33%'}>
             <div  className = "codeBlockCol">
-            <h1>Receive a block from back-end</h1>
-            <form onSubmit={handleSubmitReceive}>
-              <label style={{'margin-right': '1em'}}>Block ID</label>
-              <input
-                type="text"
-                required
-                value={formReceive}
-                onChange={(e) => setFormReceive(e.target.value)
-                }
-              />
-              <NewlineText text ={formReceivePayload}></NewlineText>
-              {/* Buttons are displayed conditionally */}
+              <h1 style={{"font-size": "1.6em"}}>Receive a block from back-end</h1>
+              <form onSubmit={handleSubmitReceive}>
+                <label style={{'margin-right': '1em'}}>Block ID</label>
+                <input
+                  type="text"
+                  required
+                  value={formReceive}
+                  onChange={(e) => setFormReceive(e.target.value)
+                  }
+                />
+                <NewlineText text ={formReceivePayload}></NewlineText>
+                <br></br>
+                {/* Buttons are displayed conditionally */}
 
-              {!isPendingReceive && <button name='receiveButton'>Receive from Gallery</button>}
-              {isPendingReceive && <button disabled name='receiveButton'>Receiving...</button>}
-            </form>
-            </div>
-
-            <div className = "codeBlockCol">
-            <h1>Delete a block from back-end</h1>
-            <form onSubmit={handleSubmitDelete}>
-              <label style={{'margin-right': '1em'}}>Block ID</label>
-              <input
-                type="text"
-                required
-                value={formDelete}
-                onChange={(e) => setFormDelete(e.target.value)}
-              />
-              {/* Buttons are displayed conditionally */}
-
-              {deleteStatus === -1 && <p>Delete Error: Could be deleting a nonexistent or non-user block.</p>}
-              {deleteStatus === 1 && <p>Block successfully deleted!</p>}
-              {!isPendingDelete && <button name='deleteButton'>Delete from Gallery</button>}
-              {isPendingDelete && <button disabled name='deleteButton'>Deleting...</button>}
-            </form>
+                {!isPendingReceive && <button name='receiveButton'>Receive from Gallery</button>}
+                {isPendingReceive && <button disabled name='receiveButton'>Receiving...</button>}
+              </form>
             </div>
           </Col>
+          <Col flex={'33%'}>
+          <div className = "codeBlockCol">
+              <h1 style={{"font-size": "1.6em"}}>Delete a block from back-end</h1>
+              <form onSubmit={handleSubmitDelete}>
+                <label style={{'margin-right': '1em'}}>Block ID</label>
+                <input
+                  type="text"
+                  required
+                  value={formDelete}
+                  onChange={(e) => setFormDelete(e.target.value)}
+                />
+                <br></br>
+                <br></br>
+                {/* Buttons are displayed conditionally */}
 
+                {deleteStatus === -1 && <p>Delete Error: Could be deleting a nonexistent or non-user block.</p>}
+                {deleteStatus === 1 && <p>Block successfully deleted!</p>}
+                {!isPendingDelete && <button name='deleteButton'>Delete from Gallery</button>}
+                {isPendingDelete && <button disabled name='deleteButton'>Deleting...</button>}
+              </form>
+            </div>
+          </Col>
           {/* Column for unit tests */}
-          <Col flex={'48%'} className = "codeBlockCol">
+          <Col flex={'33%'} className = "codeBlockCol">
             <h1>Run Unit Tests</h1>
             <h3>Unit Test 1</h3>
             <button onClick={handleUnitTest1}>Send Invalid Block (Should Not Send)</button>
@@ -1130,6 +1102,55 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
       </div>
 
       {/* End of Block Generator */}
+
+
+      
+      {/* Jeris Contribution of setup for the Gallery */}
+      {/* Start of the Gallery Components */}
+      <div id='bottom-container' className='flex flex-column vertical-container overflow-visible'>
+        <Row>
+          <h1 id = "section-header">Gallery of Shared Code</h1>
+        </Row>
+        <Row>
+          <Col>
+            <div className='CodeBlock'>
+              <p className = "code">Code goes here</p>
+              <h2 className = "studentName">Student Name</h2>
+            </div>
+          </Col>
+          <Col>
+            <div className='CodeBlock'>
+              <p className = "code">Code goes here</p>
+              <h2 className = "studentName">Student Name</h2>
+            </div>
+          </Col>
+          <Col>
+            <div className='CodeBlock'>
+              <p className = "code">Code goes here</p>
+              <h2 className = "studentName">Student Name</h2>
+            </div>
+          </Col>
+          <Col>
+            <div className='CodeBlock'>
+              <p className = "code">Code goes here</p>
+              <h2 className = "studentName">Student Name</h2>
+            </div>
+          </Col>
+          <Col>
+            <div className='CodeBlock'>
+              <p className = "code">Code goes here</p>
+              <h2 className = "studentName">Student Name</h2>
+            </div>
+          </Col>
+          <Col>
+            <div className='CodeBlock'>
+              <p className = "code">Code goes here</p>
+              <h2 className = "studentName">Student Name</h2>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      {/* End of Gallery Components */}
 
       
 
