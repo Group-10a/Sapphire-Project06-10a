@@ -453,7 +453,7 @@ export default function StudentCanvas({ activity }) {
   }
 
   // Helper function for sending a block to back-end
-  const sendBlock = async (blockName) => {
+  const sendBlock = async (blockName, formBD_ = formBD, formGS_ = formGS) => {
     try {
       // Post the block to back-end
       const res = await postOneBlock(blockName, formBD + '\n' + formGS, userCategoryID, '', 'User', 'User');
@@ -489,7 +489,7 @@ export default function StudentCanvas({ activity }) {
       const blockName = formBDLines[0].substring(quoteStart + 1, quoteEnd);
 
       // Send block to back-end (send status is to be determined by the function)
-      await sendBlock(blockName);
+      await sendBlock(blockName, formBD_, formGS_);
     }
     else {
       setSendStatus(-1);
