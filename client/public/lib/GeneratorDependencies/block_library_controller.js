@@ -29,6 +29,12 @@
  */
 'use strict';
 
+import BlockLibraryStorage from './block_library_storage.js'
+import BlockLibraryView from './block_library_view.js'
+import FactoryUtils from './factory_utils.js';
+import BlockFactory from './factory.js';
+import BlocklyDevTools from './analytics.js';
+
 /**
  * Block Library Controller Class
  * @param {string} blockLibraryName Desired name of Block Library, also used
@@ -313,3 +319,5 @@ BlockLibraryController.prototype.updateButtons = function(savedChanges) {
   var isInLibrary = this.has(blockType);
   this.view.updateButtons(blockType, isInLibrary, savedChanges);
 };
+
+export default BlockLibraryController;

@@ -26,6 +26,8 @@
  */
 'use strict';
 
+import FactoryUtils from "./factory_utils";
+
 /**
  * Namespace for Block Factory.
  */
@@ -127,6 +129,8 @@ BlockFactory.updateLanguage = function() {
   if (!rootBlock) {
     return;
   }
+
+  console.log(BlockFactory.mainWorkspace);
   var blockType = rootBlock.getFieldValue('NAME').trim().toLowerCase();
   if (!blockType) {
     blockType = BlockFactory.UNNAMED;
@@ -177,7 +181,7 @@ BlockFactory.updatePreview = function() {
     var rtl = newDir == 'rtl';
     BlockFactory.previewWorkspace = Blockly.inject('preview',
         {rtl: rtl,
-         media: './media/',
+         media: './src/assets/',
          scrollbars: true});
     BlockFactory.oldDir = newDir;
   }
@@ -305,6 +309,7 @@ BlockFactory.disableEnableLink = function() {
 BlockFactory.showStarterBlock = function() {
   BlockFactory.mainWorkspace.clear();
   var xml = Blockly.Xml.textToDom(BlockFactory.STARTER_BLOCK_XML_TEXT);
+  console.log(xml);
   Blockly.Xml.domToWorkspace(xml, BlockFactory.mainWorkspace);
 };
 
@@ -335,3 +340,5 @@ BlockFactory.manualEdit = function() {
   BlockFactory.updateBlocksFlagDelayed = true;
   BlockFactory.updateLanguage();
 }
+
+export default BlockFactory;

@@ -23,11 +23,18 @@
  * @author quachtina96 (Tina Quach)
  */
 
+import BlocklyDevTools from './analytics.js'
+import BlockLibraryController from './block_library_controller.js'
+import BlockLibraryStorage from './block_library_storage.js'
+import BlockFactory from './factory.js'
+import FactoryUtils from './factory_utils.js'
+import BlocklyStorage from './storage.js'
+
 /**
  * Controller for the Blockly Factory
  * @constructor
  */
-AppController = function() {
+const AppController = function() {
     // Initialize Block Library
     this.blockLibraryName = 'blockLibrary';
     this.blockLibraryController =
@@ -35,21 +42,21 @@ AppController = function() {
     this.blockLibraryController.populateBlockLibrary();
   
     // Construct Workspace Factory Controller.
-    this.workspaceFactoryController = new WorkspaceFactoryController
-        ('workspacefactory_toolbox', 'toolbox_blocks', 'preview_blocks');
+    /*this.workspaceFactoryController = new WorkspaceFactoryController
+        ('workspacefactory_toolbox', 'toolbox_blocks', 'preview_blocks');*/
   
     // Initialize Block Exporter
-    this.exporter =
-        new BlockExporterController(this.blockLibraryController.storage);
+    /*this.exporter =
+        new BlockExporterController(this.blockLibraryController.storage);*/
   
     // Map of tab type to the div element for the tab.
     this.tabMap = Object.create(null);
     this.tabMap[AppController.BLOCK_FACTORY] =
         document.getElementById('blockFactory_tab');
-    this.tabMap[AppController.WORKSPACE_FACTORY] =
+    /*this.tabMap[AppController.WORKSPACE_FACTORY] =
         document.getElementById('workspaceFactory_tab');
     this.tabMap[AppController.EXPORTER] =
-        document.getElementById('blocklibraryExporter_tab');
+        document.getElementById('blocklibraryExporter_tab');*/
   
     // Last selected tab.
     this.lastSelectedTab = null;
@@ -294,9 +301,9 @@ AppController = function() {
         this.selectedTab == AppController.WORKSPACE_FACTORY;
   
     // Turn selected tab on and other tabs off.
-    this.styleTabs_();
+    //this.styleTabs_();
   
-    if (this.selectedTab == AppController.EXPORTER) {
+    /*if (this.selectedTab == AppController.EXPORTER) {
       BlocklyDevTools.Analytics.onNavigateTo('Exporter');
   
       // Hide other tabs.
@@ -319,7 +326,7 @@ AppController = function() {
       // Update the exporter's preview to reflect any changes made to the blocks.
       this.exporter.updatePreview();
   
-    } else if (this.selectedTab ==  AppController.BLOCK_FACTORY) {
+    } else if (this.selectedTab ==  AppController.BLOCK_FACTORY) {*/
       BlocklyDevTools.Analytics.onNavigateTo('BlockFactory');
   
       // Hide other tabs.
@@ -328,7 +335,7 @@ AppController = function() {
       // Show Block Factory.
       FactoryUtils.show('blockFactoryContent');
   
-    } else if (this.selectedTab == AppController.WORKSPACE_FACTORY) {
+    /*} else if (this.selectedTab == AppController.WORKSPACE_FACTORY) {
       // TODO: differentiate Workspace and Toolbox editor, based on the other tab state.
       BlocklyDevTools.Analytics.onNavigateTo('WorkspaceFactory');
   
@@ -342,7 +349,7 @@ AppController = function() {
       var blockTypes = this.blockLibraryController.getStoredBlockTypes();
       this.workspaceFactoryController.setBlockLibCategory(categoryXml,
           blockTypes);
-    }
+    }*/
   
     // Resize to render workspaces' toolboxes correctly for all tabs.
     window.dispatchEvent(new Event('resize'));
@@ -590,6 +597,7 @@ AppController = function() {
         function() {
             BlocklyStorage.link(BlockFactory.mainWorkspace);});
     BlockFactory.disableEnableLink();
+    console.log(BlocklyStorage);
   };
   
   /**
@@ -674,12 +682,13 @@ AppController = function() {
   AppController.prototype.init = function() {
     var self = this;
     // Handle Blockly Storage with App Engine.
+    console.log(window);
     if ('BlocklyStorage' in window) {
       this.initializeBlocklyStorage();
     }
   
     // Assign click handlers.
-    this.assignExporterClickHandlers();
+    //this.assignExporterClickHandlers();
     this.assignLibraryClickHandlers();
     this.assignBlockFactoryClickHandlers();
     // Hide and show the block library dropdown.
@@ -695,19 +704,20 @@ AppController = function() {
 
     // Inject Block Factory Main Workspace.
     var toolbox = document.getElementById('blockfactory_toolbox');
+    console.log(toolbox);
     
     BlockFactory.mainWorkspace = Blockly.inject('blockly',
         {collapse: false,
          toolbox: toolbox,
          comments: false,
          disable: false,
-         media: './media/'});
+         media: './src/assets/'});
     
     // Add tab handlers for switching between Block Factory and Block Exporter.
-    this.addTabHandlers(this.tabMap);
+    //this.addTabHandlers(this.tabMap);
   
     // Assign exporter change listeners.
-    this.assignExporterChangeListeners();
+    //this.assignExporterChangeListeners();
   
     // Create the root block on Block Factory main workspace.
     if ('BlocklyStorage' in window && window.location.hash.length > 1) {
@@ -722,5 +732,7 @@ AppController = function() {
     this.addBlockFactoryEventListeners();
   
     // Workspace Factory init.
-    WorkspaceFactoryInit.initWorkspaceFactory(this.workspaceFactoryController);
+    //WorkspaceFactoryInit.initWorkspaceFactory(this.workspaceFactoryController);
   };
+
+  export default AppController;

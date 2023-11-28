@@ -740,3 +740,5 @@ BlockDefinitionExtractor.text_ = function(text) {
   } // Else, use empty string default.
   return textBlock;
 };
+
+export default BlockDefinitionExtractor;

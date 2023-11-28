@@ -160,3 +160,5 @@ BlockLibraryStorage.prototype.getBlockXmlTextMap = function() {
 BlockLibraryStorage.prototype.has = function(blockType) {
   return !!this.blocks[blockType];
 };
+
+export default BlockLibraryStorage;

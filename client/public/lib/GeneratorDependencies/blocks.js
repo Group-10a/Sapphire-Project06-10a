@@ -21,6 +21,8 @@
  */
 'use strict';
 
+console.log("in blocks");
+
 Blockly.Blocks['factory_base'] = {
   // Base of new block.
   init: function() {
@@ -51,10 +53,10 @@ Blockly.Blocks['factory_base'] = {
     this.appendDummyInput()
         .appendField(dropdown, 'CONNECTIONS');
     this.appendValueInput('TOOLTIP')
-        .setCheck('String')
+        .setCheck('Text')
         .appendField('tooltip');
     this.appendValueInput('HELPURL')
-        .setCheck('String')
+        .setCheck('Text')
         .appendField('help url');
     this.appendValueInput('COLOUR')
         .setCheck('Colour')
@@ -65,6 +67,7 @@ Blockly.Blocks['factory_base'] = {
         'https://developers.google.com/blockly/guides/create-custom-blocks/block-factory');
   },
   mutationToDom: function() {
+    console.log(Blockly.utils);
     var container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('connections', this.getFieldValue('CONNECTIONS'));
     return container;
@@ -861,6 +864,7 @@ Blockly.Blocks['colour_hue'] = {
     // Update the current block's colour to match.
     var hue = parseInt(text, 10);
     if (!isNaN(hue)) {
+      console.log(this)
       this.getSourceBlock().setColour(hue);
     }
   },

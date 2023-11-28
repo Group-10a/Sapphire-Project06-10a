@@ -31,7 +31,6 @@
  */
 var StandardCategories = StandardCategories || Object.create(null);
 
-
 // Map of standard category information necessary to add a standard category
 // to the toolbox.
 StandardCategories.categoryMap = Object.create(null);

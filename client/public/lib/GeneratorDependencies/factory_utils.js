@@ -26,6 +26,10 @@
  */
 'use strict';
 
+import PR from './run_prettify'
+import BlockDefinitionExtractor from './block_definition_extractor'
+import BlockFactory from './factory';
+
 /**
  * Namespace for FactoryUtils.
  */
@@ -1064,3 +1068,5 @@ FactoryUtils.getHelpUrlFromRootBlock_ = function(rootBlock) {
   }
   return '';
 };
+
+export default FactoryUtils;

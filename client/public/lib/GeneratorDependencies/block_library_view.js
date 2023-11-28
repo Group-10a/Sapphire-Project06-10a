@@ -37,6 +37,9 @@ var BlockLibraryView = function() {
   // Save and delete buttons.
   this.saveButton = document.getElementById('saveToBlockLibraryButton');
   this.deleteButton = document.getElementById('removeBlockFromLibraryButton');
+  console.log(document);
+  //console.log(this.saveButton);
+  //console.log(this.deleteButton);
   // Initially, user should not be able to delete a block. They must save a
   // block or select a stored block first.
   this.deleteButton.disabled = true;
@@ -189,3 +192,5 @@ BlockLibraryView.prototype.clearOptions = function() {
     option.parentNode.removeChild(option);
   }
 };
+
+export default BlockLibraryView;

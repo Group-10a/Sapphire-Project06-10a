@@ -33,6 +33,8 @@ import {
 } from '../../../../Utils/requests';
 import IconHammer from '../Icons/IconHammer';
 
+import BlockGenerator from '../generator/BlockGenerator'
+
 
 
 import ArduinoLogo from '../Icons/ArduinoLogo';
@@ -991,6 +993,11 @@ export default function ContentCreatorCanvas({
         />
       </div>
 
+
+      <BlockGenerator
+        setBD={setFormBD}
+        setGS={setFormGS}
+      />
 
       
       {/* Start of Block Generator */}
