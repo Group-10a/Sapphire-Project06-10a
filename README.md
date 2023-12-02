@@ -9,11 +9,13 @@ Cloud-based programming interface
 
 <br/>
 
-## Project 6: Workspacees & Toolbox - Blocks (by Group 10a: Sapphire Division)
+## Project 6: Workspaces & Toolbox - Blocks (by Group 10a: Sapphire Division)
 
 ### Project Features:
 #### Block Generator Overview
-Our group mainly focused our efforts on developing the Block Generator, an extension of CASMM's Block Canvas. Here is an example of how it should appear according to a Content Creator.
+Our group mainly focused our efforts on developing the Block Generator, an extension of CASMM's Block Canvas. In the Block Generator, users can customize new blocks to use in the toolbox of the Block Canvas.
+
+Here is an example of how it should appear according to a Content Creator.
 
 <img width="1128" alt="image" src="https://github.com/Group-10a/Sapphire-Project06-10a/assets/105729738/94c7530e-8b87-4f96-b808-12130053554c">
 
