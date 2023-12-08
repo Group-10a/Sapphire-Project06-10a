@@ -11,6 +11,7 @@ export default function BlockGenerator({
   const gen_stub = useRef(null);
 
   useEffect(() => {
+    // Initializes the block generator, injecting necessary components
     const init = () => {
       BlocklyDevTools.Analytics.init();
       blocklyFactory = new AppController();
@@ -18,6 +19,8 @@ export default function BlockGenerator({
       window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
     };
 
+    // Callback that is called whenever the text within the tags containing
+    // the block definition are changed
     const blockDefCallback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
@@ -26,6 +29,8 @@ export default function BlockGenerator({
       }
     };
 
+    // Callback that is called whenever the text within the tags containing
+    // the generator stub are changed
     const genStubCallback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
@@ -34,6 +39,8 @@ export default function BlockGenerator({
       }
     };
 
+    // Mutation Observers are used in order to call the setter functions
+    // whenever the text within the respective tags are modified
     const bDObserver = new MutationObserver(blockDefCallback);
     const gSObserver = new MutationObserver(genStubCallback);
     const observerConfig = { childList: true, subtree: true };
